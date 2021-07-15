@@ -2,6 +2,7 @@
 const Mock = require('./mockjs/index');
 const resolveRoute = require('./script/resolveRoute')
 const express = require('express')
+const bodyParser = require('body-parser')
 const app = express()
 const files = resolveRoute()
 files.forEach(path => {
@@ -13,6 +14,9 @@ files.forEach(path => {
         })
     })
 })
+
+app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.json());
 
 app.use((req, res, next) => {
     console.log(req.originalUrl)
