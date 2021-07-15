@@ -8,7 +8,8 @@ files.forEach(path => {
     const apis = require(path)
     Array.isArray(apis) && apis.forEach(api => {
         app[api.method || 'get'](api.url, (req, res) => {
-            res.json(Mock.mock(api.data))
+            const data = typeof api.data === 'function' ? api.data(req) : api.data
+            res.json(Mock.mock(data))
         })
     })
 })
