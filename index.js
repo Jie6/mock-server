@@ -1,5 +1,5 @@
 
-const Mock = require('mockjs');
+const Mock = require('./mockjs/index');
 const resolveRoute = require('./script/resolveRoute')
 const express = require('express')
 const app = express()
